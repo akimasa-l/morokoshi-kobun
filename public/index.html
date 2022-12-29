@@ -20,7 +20,7 @@
             height: 10vh;
             /* background-color:blue; */
             /* color:white; */
-            font-size: 3vh;
+            font-size: 3vmax;
             /* text-align: center; */
             /* line-height: 10vh; */
             border-bottom: 1px solid #000;
@@ -55,7 +55,7 @@
             /* background-color:blue; */
             /* color:white; */
             /* text-align:center; */
-            line-height: 10vw;
+            line-height: 10vmin;
             /* border-bottom: 1px solid #000; */
             /* writing-mode: vertical-rl; */
             display: flex;
@@ -65,7 +65,7 @@
         }
 
         .start {
-            font-size: 14vw !important;
+            font-size: 14vmin !important;
         }
 
         .question>div {
@@ -73,12 +73,12 @@
         }
 
         .question>div:nth-child(even) {
-            font-size: 5vw;
+            font-size: 5vmin;
         }
 
         .question>div:nth-child(odd) {
             align-self: end;
-            font-size: 4vw;
+            font-size: 4vmin;
         }
 
         .opt_container {
@@ -95,7 +95,7 @@
             /* height:10vh; */
             /* background-color:blue; */
             /* color:white; */
-            font-size: 5vw;
+            font-size: 5vmin;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -153,17 +153,17 @@
             <div>　</div>
         </div>
     </div>
-    <script src="/scripts/data.js"></script>
+    <script src="/scripts/data.js?a=b"></script>
     <script>
         let userdata = data.map(() => {
             return {
                 is_answered: false,
                 is_solved: false,
             }
-        });;
+        });
         let [yet, correct, wrong] = [userdata.length, 0, 0];
         function f() {
-            [yet, correct, wrong] = [userdata.length, 0, 0];
+            [yet, correct, wrong] = [0, 0, 0];
             for (i of userdata) {
                 if (i.is_answered) {
                     if (i.is_solved) {
@@ -184,11 +184,18 @@
                 <div class="wrong">${wrong}</div>
                 `;
         }
-        if (localStorage.getItem("userdata")) {
+        // if (localStorage.getItem("userdata")) {
+        try {
+            JSON.parse(localStorage.getItem("userdata"));
             userdata = JSON.parse(localStorage.getItem("userdata"));
         }
-        else {
-            localStorage.setItem("userdata", JSON.stringify(data));
+        catch (ee) {
+            //userdataは最初から初期化されてるので特にやる必要はなし　でもこいつ↓は重要やろ
+            try {
+                localStorage.setItem("userdata", JSON.stringify(userdata))
+            } catch (e) {
+                document.body.innerHTML = "ローカルストレージが使用できませんってなることあるんか　すげえな"
+            }
         }
         f();
         data = data.entries();

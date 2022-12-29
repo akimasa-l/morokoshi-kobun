@@ -35,32 +35,144 @@
         }
 
         .question {
-            display: flex;
+            /*   display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap; */
+            margin: 10px;
         }
 
-        .subtitle {
-            font-size: 2.5vh;
+        .question>div {
+            position: relative;
+            top: -5vh;
+            padding-left: 3vh;
+        }
+
+        .question>i {
+            font-size: 5vh;
+            line-height: 5vh;
+            font-family: sans-serif;
+        }
+
+        .wrong_question>i {
+            color: hsl(336, 100%, 93%);
+        }
+
+        .correct_question>i {
+            color: hsl(129, 100%, 93%);
+        }
+
+        .yet_question>i {
+            color: hsl(0, 0%, 81%);
+        }
+
+        .wrong_question>div {
+            color: hsl(0, 0%, 33%);
+
+        }
+
+        .correct_question>div {
+            color: hsl(0, 0%, 33%);
+        }
+
+        .yet_question>div {
+            color: hsl(0, 0%, 58%);
+        }
+
+        .yet {
+            color: hsl(0, 0%, 81%);
+        }
+
+        .correct {
+            color: hsl(129, 100%, 39%);
+        }
+
+        .wrong {
+            color: hsl(0, 100%, 71%);
         }
     </style>
 </head>
 
 <body>
-    <div class="title">結果はっぴょ～～～！！</div>
-    <div class="questions">
-        <div class="question wrong">
-            <div class="subtitle">不正解</div>
-        </div>
-        <div class="question correct">
-            <div class="subtitle">正解</div>
-        </div>
-        <div class="question yet">
-            <div class="subtitle">未回答</div>
-        </div>
+    <div class="title">
+        <div class="yet">100</div>
+        <div class="correct">200</div>
+        <div class="wrong">300</div>
     </div>
+    <div class="questions">
+        <div class="question wrong_question">
+            <i>260</i>
+            <div>（女君ノ）几帳にはた隠れたるかたはら目、いみじうなまめいて<u>よしあり</u>。</div>
+        </div>
+        <div class="question wrong_question">
+            <i>12</i>
+            <div>（世の<u>おぼえ</u>、時の綺羅、めでたかりき。</div>
+        </div>
+        <div class="question correct_question">
+            <i>260</i>
+            <div>（女君ノ）几帳にはた隠れたるかたはら目、いみじうなまめいて<u>よしあり</u>。</div>
+        </div>
+        <div class="question yet_question">
+            <i>260</i>
+            <div>（女君ノ）几帳にはた隠れたるかたはら目、いみじうなまめいて<u>よしあり</u>。</div>
+        </div>
+        <a href="/">まちがいだけちゃりたい！</a>
+    </div>
+    <script src="/scripts/data.js"></script>
     <script>
-        console.log(localStorage.getItem("userdata"));
+        let userdata = data.map(() => {
+            return {
+                is_answered: false,
+                is_solved: false,
+            }
+        });
+        try {
+            userdata = JSON.parse(localStorage.getItem("userdata"));
+        } catch (e) {
+            //とくになんかするか？これ
+        }
+        let [yet, correct, wrong] = [[], [], []];
+
+        for (i in userdata) {
+            if (userdata[i].is_answered) {
+                if (userdata[i].is_solved) {
+                    correct.push(i);
+                }
+                else {
+                    wrong.push(i);
+                }
+            }
+            else {
+                yet.push(i);
+            }
+        }
+        const title = document.querySelector('.title');
+        title.innerHTML = `
+                <div class="yet">${data.length}</div>
+                <div class="correct">${correct.length}</div>
+                <div class="wrong">${wrong.length}</div>
+                `;
+        let questions = "";
+        for (i of wrong) {
+            questions += `<div class="question wrong_question">
+            <i>${data[i].i}</i>
+            <div>${data[i].q}</div>
+            </div>`;
+        }
+        questions += `<a href="/">まちがいだけちゃりたい！</a>`
+        for (i of correct) {
+            questions += `<div class="question correct_question">
+            <i>${data[i].i}</i>
+            <div>${data[i].q}</div>
+            </div>`;
+        }
+        for (i of yet) {
+            questions += `<div class="question yet_question">
+            <i>${data[i].i}</i>
+            <div>${data[i].q}</div>
+            </div>`;
+        }
+        document.querySelector(".questions").innerHTML = questions;
     </script>
 </body>
 
