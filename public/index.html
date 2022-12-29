@@ -140,18 +140,18 @@
         </div>
     </div>
     <div class="opt_container">
-        <button  type="button" class="opt ok">
-            <div>ㅤ</div>
-        </button>
-        <button  type="button" class="opt ok">
-            <div>ㅤ</div>
-        </button>
-        <button  type="button" class="opt ok">
-            <div>ㅤ</div>
-        </button>
-        <button  type="button" class="opt ok">
-            <div>ㅤ</div>
-        </button>
+        <div class="opt ok">
+            <div>　</div>
+        </div>
+        <div class="opt ok">
+            <div>　</div>
+        </div>
+        <div class="opt ok">
+            <div>　</div>
+        </div>
+        <div class="opt ok">
+            <div>　</div>
+        </div>
     </div>
     <script src="/scripts/data.js"></script>
     <script>
@@ -235,7 +235,7 @@
                 e.parentElement.classList.add('selected');
                 if (index !== -1) {
                     //スタートする！
-                    const index_=data[index][0]
+                    const index_ = data[index][0]
                     if (!userdata[index_].is_answered) {
                         if (e.classList.contains('ok')) {
                             // console.log("正解");
