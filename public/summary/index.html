@@ -126,10 +126,8 @@
                 is_solved: false,
             }
         });
-        try {
+        if (localStorage.getItem("userdata") && Array.isArray(localStorage.getItem("userdata"))) {
             userdata = JSON.parse(localStorage.getItem("userdata"));
-        } catch (e) {
-            //とくになんかするか？これ
         }
         let [yet, correct, wrong] = [[], [], []];
 

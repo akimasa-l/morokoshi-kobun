@@ -184,12 +184,12 @@
                 <div class="wrong">${wrong}</div>
                 `;
         }
-        // if (localStorage.getItem("userdata")) {
-        try {
-            JSON.parse(localStorage.getItem("userdata"));
+        if (localStorage.getItem("userdata")&&Array.isArray(localStorage.getItem("userdata"))) {
             userdata = JSON.parse(localStorage.getItem("userdata"));
-        }
-        catch (ee) {
+        // /* try {
+            userdata = JSON.parse(localStorage.getItem("userdata")).isArray();
+        /*}
+        catch (ee) { */
             //userdataは最初から初期化されてるので特にやる必要はなし　でもこいつ↓は重要やろ
             try {
                 localStorage.setItem("userdata", JSON.stringify(userdata))
