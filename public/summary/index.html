@@ -126,7 +126,7 @@
                 is_solved: false,
             }
         });
-        if (localStorage.getItem("userdata") && Array.isArray(localStorage.getItem("userdata"))) {
+        if (localStorage.getItem("userdata")) {
             userdata = JSON.parse(localStorage.getItem("userdata"));
         }
         let [yet, correct, wrong] = [[], [], []];
