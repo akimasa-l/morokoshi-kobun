@@ -163,19 +163,7 @@
         });
         let [yet, correct, wrong] = [userdata.length, 0, 0];
 let [yet_before, correct_before, wrong_before] = [userdata.length, 0, 0];
-for (i of userdata) {
-                if (i.is_answered) {
-                    if (i.is_solved) {
-                        correct_before++;
-                    }
-                    else {
-                        wrong_before++;
-                    }
-                }
-                else {
-                    yet_before++;
-                }
-            }
+
         function f() {
             [yet, correct, wrong] = [0, 0, 0];
             for (i of userdata) {
@@ -212,6 +200,19 @@ for (i of userdata) {
             }
         }
         f();
+for (i of userdata) {
+                if (i.is_answered) {
+                    if (i.is_solved) {
+                        correct_before++;
+                    }
+                    else {
+                        wrong_before++;
+                    }
+                }
+                else {
+                    yet_before++;
+                }
+            }
         data = data.entries();
 
         const shuffle = ([...array]) => {
