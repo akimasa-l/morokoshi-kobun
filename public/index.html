@@ -181,7 +181,7 @@ let [yet_before, correct_before, wrong_before] = [0, 0, 0];
             }
             const title = document.querySelector('.title');
             title.innerHTML = `
-                <div class="yet">${yet}(+${yet-yet_before})</div>
+                <div class="yet">${yet}(${yet-yet_before})</div>
                 <div class="correct">${correct}(+${correct-correct_before})</div>
                 <div class="wrong">${wrong}(+${wrong-wrong_before})</div>
                 `;
