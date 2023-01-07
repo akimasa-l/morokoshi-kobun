@@ -162,6 +162,20 @@
             }
         });
         let [yet, correct, wrong] = [userdata.length, 0, 0];
+let [yet_before, correct_before, wrong_before] = [userdata.length, 0, 0];
+for (i of userdata) {
+                if (i.is_answered) {
+                    if (i.is_solved) {
+                        correct_before++;
+                    }
+                    else {
+                        wrong_before++;
+                    }
+                }
+                else {
+                    yet_before++;
+                }
+            }
         function f() {
             [yet, correct, wrong] = [0, 0, 0];
             for (i of userdata) {
@@ -179,9 +193,9 @@
             }
             const title = document.querySelector('.title');
             title.innerHTML = `
-                <div class="yet">${yet}</div>
-                <div class="correct">${correct}</div>
-                <div class="wrong">${wrong}</div>
+                <div class="yet">${yet}(+${yet-yet_before})</div>
+                <div class="correct">${correct}(+${correct-correct_before})</div>
+                <div class="wrong">${wrong}(+${wrong-wrong_before})</div>
                 `;
         }
         if (localStorage.getItem("userdata")) {
