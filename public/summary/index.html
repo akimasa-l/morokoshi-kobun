@@ -100,7 +100,7 @@
         <div class="wrong">300</div>
     </div>
     <div class="questions">
-        <div class="question wrong_question">
+      <!------  <div class="question wrong_question">
             <i>260</i>
             <div>（女君ノ）几帳にはた隠れたるかたはら目、いみじうなまめいて<u>よしあり</u>。</div>
         </div>
@@ -115,7 +115,7 @@
         <div class="question yet_question">
             <i>260</i>
             <div>（女君ノ）几帳にはた隠れたるかたはら目、いみじうなまめいて<u>よしあり</u>。</div>
-        </div>
+        </div> --->
         <a href="/">まちがいだけちゃりたい！</a>
     </div>
     <script src="/scripts/data.js"></script>
@@ -150,7 +150,7 @@
                 <div class="correct">${correct.length}</div>
                 <div class="wrong">${wrong.length}</div>
                 `;
-        let questions = "";
+        let questions = `<a href="">ツイートする！</a>`;
         for (i of wrong) {
             questions += `<div class="question wrong_question">
             <i>${data[i].i}</i>
