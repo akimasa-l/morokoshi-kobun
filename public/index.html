@@ -162,7 +162,7 @@
             }
         });
         let [yet, correct, wrong] = [userdata.length, 0, 0];
-let [yet_before, correct_before, wrong_before] = [0, 0, 0];
+        let [yet_before, correct_before, wrong_before] = [0, 0, 0];
 
         function f() {
             [yet, correct, wrong] = [0, 0, 0];
@@ -181,17 +181,17 @@ let [yet_before, correct_before, wrong_before] = [0, 0, 0];
             }
             const title = document.querySelector('.title');
             title.innerHTML = `
-                <div class="yet">${yet}(${yet-yet_before})</div>
-                <div class="correct">${correct}(+${correct-correct_before})</div>
-                <div class="wrong">${wrong}(+${wrong-wrong_before})</div>
+                <div class="yet">${yet}(${yet - yet_before})</div>
+                <div class="correct">${correct}(+${correct - correct_before})</div>
+                <div class="wrong">${wrong}(+${wrong - wrong_before})</div>
                 `;
         }
         if (localStorage.getItem("userdata")) {
             userdata = JSON.parse(localStorage.getItem("userdata"));
-        // /* try {
-          //  userdata = JSON.parse(localStorage.getItem("userdata")).isArray();
-        /*}
-        catch (ee) { */
+            // /* try {
+            //  userdata = JSON.parse(localStorage.getItem("userdata")).isArray();
+            /*}
+            catch (ee) { */
             //userdataは最初から初期化されてるので特にやる必要はなし　でもこいつ↓は重要やろ
             try {
                 localStorage.setItem("userdata", JSON.stringify(userdata))
@@ -200,19 +200,19 @@ let [yet_before, correct_before, wrong_before] = [0, 0, 0];
             }
         }
         f();
-for (i of userdata) {
-                if (i.is_answered) {
-                    if (i.is_solved) {
-                        correct_before++;
-                    }
-                    else {
-                        wrong_before++;
-                    }
+        for (i of userdata) {
+            if (i.is_answered) {
+                if (i.is_solved) {
+                    correct_before++;
                 }
                 else {
-                    yet_before++;
+                    wrong_before++;
                 }
             }
+            else {
+                yet_before++;
+            }
+        }
         data = data.entries();
 
         const shuffle = ([...array]) => {
@@ -285,7 +285,7 @@ for (i of userdata) {
                 document.querySelector(".selected").classList.remove("selected")
             }
         });
-document.querySelector(".title").addEventListener('click', () => {location.pathname="/summary"})
+        document.querySelector(".title").addEventListener('click', () => { location.pathname = "/summary" })
 
     </script>
 </body>
