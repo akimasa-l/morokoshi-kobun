@@ -199,21 +199,27 @@
                 document.body.innerHTML = "ローカルストレージが使用できませんってなることあるんか　すげえな"
             }
         }
-        for (i of userdata) {
-            if (i.is_answered) {
-                if (i.is_solved) {
+        for (i in userdata) {
+            if (userdata[i].is_answered) {
+                if (userdata[i].is_solved) {
                     correct_before++;
+                    // 優先度は0.7~1.0
+                    data[i].priority = 0.7 + Math.random() * 0.3;
                 }
                 else {
                     wrong_before++;
+                    // 優先度は0.0~0.2
+                    data[i].priority = 0.0 + Math.random() * 0.2;
                 }
             }
             else {
                 yet_before++;
+                data[i].priority = 0.1 + Math.random() * 0.9;
             }
         }
         f();
-        data = data.entries();
+        data.sort((a,b) => a.priority - b.priority);
+        data = [...data.entries()];
 
         const shuffle = ([...array]) => {
             for (let i = array.length - 1; i >= 0; i--) {
@@ -223,7 +229,7 @@
             return array;
         }
 
-        data = shuffle(data);
+        // data = shuffle(data);
 
         let index = -1;
 
