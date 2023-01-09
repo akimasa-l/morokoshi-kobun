@@ -1,306 +1,316 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta data-n-head="1" name="twitter:card" content="summary">
-    <meta data-n-head="1" name="twitter:site" content="@Akimasa_L">
-    <meta data-n-head="1" property="og:url" content="https://morokoshi-kobun.web.app">
-    <meta data-n-head="1" property="og:title" content="古文単語一問一答集">
-    <meta data-n-head="1" property="og:description" content="最初に下のボタン押してスタートする！を押してください">
-    <meta data-n-head="1" property="og:image" content="https://hide-4063.web.app/morokoshi.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta data-n-head="1" name="twitter:card" content="summary" />
+    <meta data-n-head="1" name="twitter:site" content="@Akimasa_L" />
+    <meta data-n-head="1" property="og:url" content="https://morokoshi-kobun.web.app" />
+    <meta data-n-head="1" property="og:title" content="古文単語一問一答集" />
+    <meta data-n-head="1" property="og:description" content="最初に下のボタン押してスタートする！を押してください" />
+    <meta data-n-head="1" property="og:image" content="https://hide-4063.web.app/morokoshi.png" />
     <style>
-        body {
-            width: 100vw;
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+      body {
+        width: 100vw;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
-        .title {
-            width: 100%;
-            height: 10vh;
-            /* background-color:blue; */
-            /* color:white; */
-            font-size: 3vmax;
-            /* text-align: center; */
-            /* line-height: 10vh; */
-            border-bottom: 1px solid #000;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-        }
+      .title {
+        width: 100%;
+        height: 10vh;
+        /* background-color:blue; */
+        /* color:white; */
+        font-size: 3vmax;
+        /* text-align: center; */
+        /* line-height: 10vh; */
+        border-bottom: 1px solid #000;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
 
-        .yet {
-            color: hsl(0, 0%, 81%);
-        }
+      .yet {
+        color: hsl(0, 0%, 81%);
+      }
 
-        .correct {
-            color: hsl(129, 100%, 39%);
-        }
+      .correct {
+        color: hsl(129, 100%, 39%);
+      }
 
-        .wrong {
-            color: hsl(0, 100%, 71%);
-        }
+      .wrong {
+        color: hsl(0, 100%, 71%);
+      }
 
-        .question_container {
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            max-height: 60vh;
-        }
+      .question_container {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        max-height: 60vh;
+      }
 
-        .question {
-            padding: 15px;
-            /* width:100%; */
-            /* max-height:100vh; */
-            /* background-color:blue; */
-            /* color:white; */
-            /* text-align:center; */
-            line-height: 10vmin;
-            /* border-bottom: 1px solid #000; */
-            /* writing-mode: vertical-rl; */
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: center;
-            align-items: center;
-        }
+      .question {
+        padding: 15px;
+        /* width:100%; */
+        /* max-height:100vh; */
+        /* background-color:blue; */
+        /* color:white; */
+        /* text-align:center; */
+        line-height: 10vmin;
+        /* border-bottom: 1px solid #000; */
+        /* writing-mode: vertical-rl; */
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .start {
-            font-size: 10vmin !important;
-        }
+      .start {
+        font-size: 10vmin !important;
+      }
 
-        .question>div {
-            writing-mode: vertical-rl;
-        }
+      .question > div {
+        writing-mode: vertical-rl;
+      }
 
-        .question>div:nth-child(even) {
-            font-size: 5vmin;
-        }
+      .question > div:nth-child(even) {
+        font-size: 5vmin;
+      }
 
-        .question>div:nth-child(odd) {
-            align-self: end;
-            font-size: 4vmin;
-        }
+      .question > div:nth-child(odd) {
+        align-self: end;
+        font-size: 4vmin;
+      }
 
-        .opt_container {
-            width: 100%;
-            /* height:90vh; */
-            /* background-color:yellow; */
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-        }
+      .opt_container {
+        width: 100%;
+        /* height:90vh; */
+        /* background-color:yellow; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
 
-        .opt {
-            width: 40%;
-            /* height:10vh; */
-            /* background-color:blue; */
-            /* color:white; */
-            font-size: 5vmin;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* line-height:10vh; */
-            border: 2px solid;
-            border-color: hsl(129, 0, 0);
-            background-color: hsl(129, 100, 100);
-            border-radius: 30px;
-            margin: 1%;
-            padding: 10px;
-            transition-property: border-color, background-color;
-            transition-duration: .25s;
-        }
+      .opt {
+        width: 40%;
+        /* height:10vh; */
+        /* background-color:blue; */
+        /* color:white; */
+        font-size: 5vmin;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* line-height:10vh; */
+        border: 2px solid;
+        border-color: hsl(129, 0, 0);
+        background-color: hsl(129, 100, 100);
+        border-radius: 30px;
+        margin: 1%;
+        padding: 10px;
+        transition-property: border-color, background-color;
+        transition-duration: 0.25s;
+      }
 
-        .opt>div {
-            text-align: center;
-        }
+      .opt > div {
+        text-align: center;
+      }
 
-        .selected .ok {
-            border-color: hsl(129, 100%, 39%);
-            background-color: hsl(126, 100%, 98.8%);
-        }
+      .selected .ok {
+        border-color: hsl(129, 100%, 39%);
+        background-color: hsl(126, 100%, 98.8%);
+      }
 
-        .selected .ng {
-            border-color: hsl(334, 100%, 39%);
-            background-color: hsl(334, 100%, 99%);
-        }
+      .selected .ng {
+        border-color: hsl(334, 100%, 39%);
+        background-color: hsl(334, 100%, 99%);
+      }
     </style>
     <title>古文単語一問一答集</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="title">
-        <!-- タイトル -->
-        <div class="yet">100</div>
-        <div class="correct">200</div>
-        <div class="wrong">300</div>
+      <!-- タイトル -->
+      <div class="yet">100</div>
+      <div class="correct">200</div>
+      <div class="wrong">300</div>
     </div>
     <div class="question_container">
-        <div class="question">
-            <div class="start">スタートする！</div>
-        </div>
+      <div class="question">
+        <div class="start">スタートする！</div>
+      </div>
     </div>
     <div class="opt_container">
-        <div class="opt ok">
-            <div>　</div>
-        </div>
-        <div class="opt ok">
-            <div>　</div>
-        </div>
-        <div class="opt ok">
-            <div>　</div>
-        </div>
-        <div class="opt ok">
-            <div>　</div>
-        </div>
+      <div class="opt ok">
+        <div></div>
+      </div>
+      <div class="opt ok">
+        <div></div>
+      </div>
+      <div class="opt ok">
+        <div></div>
+      </div>
+      <div class="opt ok">
+        <div></div>
+      </div>
     </div>
     <script src="/scripts/data.js"></script>
     <script>
-        let userdata = data.map(() => {
-            return {
-                is_answered: false,
-                is_solved: false,
-            }
-        });
-        let [yet, correct, wrong] = [userdata.length, 0, 0];
-        let [yet_before, correct_before, wrong_before] = [0, 0, 0];
+      let userdata = data.map(() => {
+        return {
+          is_answered: false,
+          is_solved: false,
+        };
+      });
+      let [yet, correct, wrong] = [userdata.length, 0, 0];
+      let [yet_before, correct_before, wrong_before] = [0, 0, 0];
 
-        function f() {
-            [yet, correct, wrong] = [0, 0, 0];
-            for (i of userdata) {
-                if (i.is_answered) {
-                    if (i.is_solved) {
-                        correct++;
-                    }
-                    else {
-                        wrong++;
-                    }
-                }
-                else {
-                    yet++;
-                }
+      function f() {
+        [yet, correct, wrong] = [0, 0, 0];
+        for (i of userdata) {
+          if (i.is_answered) {
+            if (i.is_solved) {
+              correct++;
+            } else {
+              wrong++;
             }
-            const title = document.querySelector('.title');
-            title.innerHTML = `
-                <div class="yet">${yet}(${yet - yet_before})</div>
-                <div class="correct">${correct}(+${correct - correct_before})</div>
-                <div class="wrong">${wrong}(+${wrong - wrong_before})</div>
+          } else {
+            yet++;
+          }
+        }
+        const title = document.querySelector(".title");
+        change = [yet - yet_before, correct - correct_before, wrong - wrong_before];
+        for (i = 0; i < 3; i++) {
+          switch (true) {
+            case change[i] > 0:
+              change[i] = "+" + change[i];
+              break;
+            case change[i] < 0:
+              change[i] = String(change[i]);
+              break;
+            default:
+              change[i] = "+0";
+          }
+        }
+        title.innerHTML = `
+                <div class="yet">${yet}(${change[0]})</div>
+                <div class="correct">${correct}(${change[1]})</div>
+                <div class="wrong">${wrong}(${change[2]})</div>
                 `;
-        }
-        if (localStorage.getItem("userdata")) {
-            userdata = JSON.parse(localStorage.getItem("userdata"));
-            // /* try {
-            //  userdata = JSON.parse(localStorage.getItem("userdata")).isArray();
-            /*}
+      }
+      if (localStorage.getItem("userdata")) {
+        userdata = JSON.parse(localStorage.getItem("userdata"));
+        // /* try {
+        //  userdata = JSON.parse(localStorage.getItem("userdata")).isArray();
+        /*}
             catch (ee) { */
-            //userdataは最初から初期化されてるので特にやる必要はなし　でもこいつ↓は重要やろ
-            try {
-                localStorage.setItem("userdata", JSON.stringify(userdata))
-            } catch (e) {
-                document.body.innerHTML = "ローカルストレージが使用できませんってなることあるんか　すげえな"
-            }
+        //userdataは最初から初期化されてるので特にやる必要はなし　でもこいつ↓は重要やろ
+        try {
+          localStorage.setItem("userdata", JSON.stringify(userdata));
+        } catch (e) {
+          document.body.innerHTML = "ローカルストレージが使用できませんってなることあるんか　すげえな";
         }
-        for (i in userdata) {
-            if (userdata[i].is_answered) {
-                if (userdata[i].is_solved) {
-                    correct_before++;
-                    // 優先度は0.7~1.0
-                    data[i].priority = 0.7 + Math.random() * 0.3;
-                }
-                else {
-                    wrong_before++;
-                    // 優先度は0.0~0.2
-                    data[i].priority = 0.0 + Math.random() * 0.2;
-                }
-            }
-            else {
-                yet_before++;
-                data[i].priority = 0.1 + Math.random() * 0.9;
-            }
+      }
+      for (i in userdata) {
+        if (userdata[i].is_answered) {
+          if (userdata[i].is_solved) {
+            correct_before++;
+            // 優先度は0.7~1.0
+            data[i].priority = 0.7 + Math.random() * 0.3;
+          } else {
+            wrong_before++;
+            // 優先度は0.0~0.2
+            data[i].priority = 0.0 + Math.random() * 0.2;
+          }
+        } else {
+          yet_before++;
+          data[i].priority = 0.1 + Math.random() * 0.9;
         }
-        f();
-data = [...data.entries()];
-        data.sort((a,b) => a[1].priority - b[1].priority);
-        
+      }
+      f();
+      data = [...data.entries()];
+      data.sort((a, b) => a[1].priority - b[1].priority);
 
-        const shuffle = ([...array]) => {
-            for (let i = array.length - 1; i >= 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
+      const shuffle = ([...array]) => {
+        for (let i = array.length - 1; i >= 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
         }
+        return array;
+      };
 
-        // data = shuffle(data);
+      // data = shuffle(data);
 
-        let index = -1;
+      let index = -1;
 
-        function update() {
-            const question = document.querySelector('.question');
-            question.innerHTML = `
+      function update() {
+        const question = document.querySelector(".question");
+        question.innerHTML = `
             <div>${data[index][1].l}</div>
             <div>${data[index][1].q}</div>
             <div>${data[index][1].f}</div>
             <div>${data[index][1].t}</div>
             `;
 
-            const opt = document.querySelectorAll('.opt');
-            const [a, b, c, d] = data[index][1].o;
-            const shuffled = shuffle([["ok", a], ["ng", b], ["ng", c], ["ng", d]]);
-            opt.forEach((e, i) => {
-                e.innerHTML = `<div>${shuffled[i][1]}</div>`;
-                e.classList.remove("ok", "ng");
-                e.classList.add(shuffled[i][0]);
-            });
-            // console.log(data[index][0])
-
-        }
-
-        let clicked = false;
-        const opt = document.querySelectorAll('.opt');
-        opt.forEach((e) => {
-            e.addEventListener('click', () => {
-                // console.log(index);
-                clicked = true;
-                e.parentElement.classList.add('selected');
-                if (index !== -1) {
-                    //スタートする！ ではないとき
-                    const index_ = data[index][0]
-                   // if (!userdata[index_].is_answered) {
-                        if (e.classList.contains('ok')) {
-                            // console.log("正解");
-                            userdata[index_].is_solved = true;
-                        } else {
-                            userdata[index_].is_solved = false;
-                            // console.log("不正解");
-                        }
-                 //   }
-                    userdata[index_].is_answered = true;
-
-                }
-                f();
-                localStorage.setItem("userdata", JSON.stringify(userdata));
-            });
+        const opt = document.querySelectorAll(".opt");
+        const [a, b, c, d] = data[index][1].o;
+        const shuffled = shuffle([
+          ["ok", a],
+          ["ng", b],
+          ["ng", c],
+          ["ng", d],
+        ]);
+        opt.forEach((e, i) => {
+          e.innerHTML = `<div>${shuffled[i][1]}</div>`;
+          e.classList.remove("ok", "ng");
+          e.classList.add(shuffled[i][0]);
         });
-        document.querySelector(".question_container").addEventListener('click', (e) => {
-            if (clicked) {
-                clicked = false;
-                if (index >= data.length) {
-                    return;
-                }
-                index++;
-                update();
-                document.querySelector(".selected").classList.remove("selected")
+        // console.log(data[index][0])
+      }
+
+      let clicked = false;
+      const opt = document.querySelectorAll(".opt");
+      opt.forEach((e) => {
+        e.addEventListener("click", () => {
+          // console.log(index);
+          clicked = true;
+          e.parentElement.classList.add("selected");
+          if (index !== -1) {
+            //スタートする！ ではないとき
+            const index_ = data[index][0];
+            // if (!userdata[index_].is_answered) {
+            if (e.classList.contains("ok")) {
+              // console.log("正解");
+              userdata[index_].is_solved = true;
+            } else {
+              userdata[index_].is_solved = false;
+              // console.log("不正解");
             }
+            //   }
+            userdata[index_].is_answered = true;
+          }
+          f();
+          localStorage.setItem("userdata", JSON.stringify(userdata));
         });
-        document.querySelector(".title").addEventListener('click', () => { location.pathname = "/summary" })
-
+      });
+      document.querySelector(".question_container").addEventListener("click", (e) => {
+        if (clicked) {
+          clicked = false;
+          if (index >= data.length) {
+            return;
+          }
+          index++;
+          update();
+          document.querySelector(".selected").classList.remove("selected");
+        }
+      });
+      document.querySelector(".title").addEventListener("click", () => {
+        location.pathname = "/summary";
+      });
     </script>
-</body>
-
+  </body>
 </html>
