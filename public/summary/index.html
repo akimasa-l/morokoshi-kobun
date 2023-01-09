@@ -150,7 +150,7 @@
                 <div class="correct">${correct.length}</div>
                 <div class="wrong">${wrong.length}</div>
                 `;
-        let questions = `<a href="">ツイートする！</a>`;
+        let questions = `<a href="https://twitter.com/intent/tweet?text=%E5%8F%A4%E6%96%87%E5%8D%98%E8%AA%9E${correct.length}%E5%95%8F%E6%AD%A3%E8%A7%A3%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%EF%BC%81%EF%BC%81&url=https%3A%2F%2Fmorokoshi-kobun.web.app%2F">ツイートする！</a>`;
         for (i of wrong) {
             questions += `<div class="question wrong_question">
             <i>${data[i].i}</i>
