@@ -269,9 +269,9 @@ data = [...data.entries()];
                 clicked = true;
                 e.parentElement.classList.add('selected');
                 if (index !== -1) {
-                    //スタートする！
+                    //スタートする！ ではないとき
                     const index_ = data[index][0]
-                    if (!userdata[index_].is_answered) {
+                   // if (!userdata[index_].is_answered) {
                         if (e.classList.contains('ok')) {
                             // console.log("正解");
                             userdata[index_].is_solved = true;
@@ -279,7 +279,7 @@ data = [...data.entries()];
                             userdata[index_].is_solved = false;
                             // console.log("不正解");
                         }
-                    }
+                 //   }
                     userdata[index_].is_answered = true;
 
                 }
