@@ -54,7 +54,7 @@
         }
 
         .settings {
-            margin:8px;
+            margin: 8px;
         }
     </style>
     <title>古文単語一問一答集</title>
@@ -83,16 +83,61 @@
     </div>
     <script src="/scripts/data.js"></script>
     <script>
-        document.querySelector("apply").addEventListener("click", function(){
+
+        const start = Number(localStorage.getItem("start")) || 1;
+        const end = Number(localStorage.getItem("end")) || 200;
+        data = data.filter((e) => start <= e.i && e.i <= end)
+        let userdata = data.map(() => {
+            return {
+                is_answered: false,
+                is_solved: false,
+            }
+        });
+        userdata = data.map(() => {
+            return {
+                is_answered: false,
+                is_solved: false,
+            }
+        });
+        if (localStorage.getItem("userdata")) {
+            userdata = JSON.parse(localStorage.getItem("userdata"));
+        }
+        let [yet, correct, wrong] = [[], [], []];
+
+        for (i in userdata) {
+            if (userdata[i].is_answered) {
+                if (userdata[i].is_solved) {
+                    correct.push(i);
+                }
+                else {
+                    wrong.push(i);
+                }
+            }
+            else {
+                yet.push(i);
+            }
+        }
+        const title = document.querySelector('.title');
+        title.innerHTML = `
+                <div class="yet">${data.length}</div>
+                <div class="correct">${correct.length}</div>
+                <div class="wrong">${wrong.length}</div>
+                `;
+        title.addEventListener("click", () => {
+            location.pathname = "/summary" 
+        })
+
+        document.querySelector("#apply").addEventListener("click", function () {
             let start = document.querySelector("#start").value;
             let end = document.querySelector("#end").value;
-            if(start < 1 || end > 528 || start > end){
+            if (start < 1 || end > 528 || start > end) {
                 alert("1~528の範囲で入力してください");
                 return;
             }
             localStorage.clear();
             localStorage.setItem("start", start);
             localStorage.setItem("end", end);
+            location.reload()
         })
     </script>
 </body>
