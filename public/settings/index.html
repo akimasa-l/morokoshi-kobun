@@ -86,6 +86,8 @@
 
         const start = Number(localStorage.getItem("start")) || 1;
         const end = Number(localStorage.getItem("end")) || 200;
+        document.querySelector("#start").value=start;
+        document.querySelector("#end").value=end;
         data = data.filter((e) => start <= e.i && e.i <= end)
         let userdata = data.map(() => {
             return {
