@@ -130,15 +130,15 @@
         })
 
         document.querySelector("#apply").addEventListener("click", function () {
-            let start = document.querySelector("#start").value;
-            let end = document.querySelector("#end").value;
-            if (start < 1 || end > 528 || start > end) {
+            let start_ = document.querySelector("#start").value;
+            let end_ = document.querySelector("#end").value;
+            if (start_ < 1 || end_ > 528 || start_ > end_) {
                 alert("1~528の範囲で入力してください");
                 return;
             }
             localStorage.clear();
-            localStorage.setItem("start", start);
-            localStorage.setItem("end", end);
+            localStorage.setItem("start", start_);
+            localStorage.setItem("end", end_);
             location.reload()
         })
     </script>

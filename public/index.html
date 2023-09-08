@@ -150,16 +150,16 @@
     </div>
   </div>
   <div class="opt_container">
-    <div class="opt ok">
+    <div class="opt ok o0">
       <div>　</div>
     </div>
-    <div class="opt ok">
+    <div class="opt ok o1">
       <div>　</div>
     </div>
-    <div class="opt ok">
+    <div class="opt ok o2">
       <div>　</div>
     </div>
-    <div class="opt ok">
+    <div class="opt ok o3">
       <div>　</div>
     </div>
   </div>
@@ -179,6 +179,7 @@
       return {
         is_answered: false,
         is_solved: false,
+        selected_option: null,
       };
     });
     let [yet, correct, wrong] = [userdata.length, 0, 0];
@@ -217,6 +218,7 @@
                 <div class="wrong">${wrong}(${change[2]})</div>
                 `;
     }
+
     if (localStorage.getItem("userdata")) {
       userdata = JSON.parse(localStorage.getItem("userdata"));
       // /* try {
@@ -230,6 +232,7 @@
         document.body.innerHTML = "ローカルストレージが使用できませんってなることあるんか　すげえな";
       }
     }
+
     for (i in userdata) {
       if (userdata[i].is_answered) {
         if (userdata[i].is_solved) {
@@ -246,6 +249,7 @@
         data[i].priority = 0.1 + Math.random() * 0.9;
       }
     }
+
     f();
     data = [...data.entries()];
     data.sort((a, b) => a[1].priority - b[1].priority);
@@ -274,15 +278,16 @@
       const opt = document.querySelectorAll(".opt");
       const [a, b, c, d] = data[index][1].o;
       const shuffled = shuffle([
-        ["ok", a],
-        ["ng", b],
-        ["ng", c],
-        ["ng", d],
+        ["ok", a, "o0"],
+        ["ng", b, "o1"],
+        ["ng", c, "o2"],
+        ["ng", d, "o3"],
       ]);
       opt.forEach((e, i) => {
         e.innerHTML = `<div>${shuffled[i][1]}</div>`;
         e.classList.remove("ok", "ng");
         e.classList.add(shuffled[i][0]);
+        e.classList.add(shuffled[i][2]);
       });
       // console.log(data[index][0])
     }
@@ -302,8 +307,19 @@
             // console.log("正解");
             userdata[index_].is_solved = true;
           } else {
-            userdata[index_].is_solved = false;
             // console.log("不正解");
+            userdata[index_].is_solved = false;
+
+            //このアホが書いたコードをご覧あれ↓
+            if (e.classList.contains("o1")) {
+              userdata[index_].selected_option = 1;
+            }
+            else if (e.classList.contains("o2")) {
+              userdata[index_].selected_option = 2;
+            }
+            else if (e.classList.contains("o3")) {
+              userdata[index_].selected_option = 3;
+            }
           }
           //   }
           userdata[index_].is_answered = true;
@@ -312,6 +328,7 @@
         localStorage.setItem("userdata", JSON.stringify(userdata));
       });
     });
+
     document.querySelector(".question_container").addEventListener("click", (e) => {
       if (clicked) {
         clicked = false;
@@ -323,6 +340,7 @@
         document.querySelector(".selected").classList.remove("selected");
       }
     });
+
     document.querySelector(".title").addEventListener("click", () => {
       location.pathname = "/summary";
     });
