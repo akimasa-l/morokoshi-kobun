@@ -266,8 +266,30 @@
 
     let index = -1;
 
+    function isAllCorrect() {
+      for (i of userdata) {
+        if (!i.is_answered || !i.is_solved) {
+          return false;
+        }
+      }
+      return true;
+    }
+
     function update() {
       const question = document.querySelector(".question");
+      const opt = document.querySelectorAll(".opt");
+      if (data[index]) {
+        //普通の処理
+      }
+      else if (isAllCorrect()) {
+        question.innerHTML = `<div class="start">おしまい！</div>`;
+        opt.forEach((e) => {
+          e.innerHTML = `<div>　</div>`;
+          e.classList.remove("ok", "ng");
+          e.classList.add("ok");
+        });
+        return;
+      }
       question.innerHTML = `
             <div>${data[index][1].l}</div>
             <div>${data[index][1].q}</div>
@@ -275,7 +297,7 @@
             <div>${data[index][1].t}</div>
             `;
 
-      const opt = document.querySelectorAll(".opt");
+
       const [a, b, c, d] = data[index][1].o;
       const shuffled = shuffle([
         ["ok", a, "o0"],
