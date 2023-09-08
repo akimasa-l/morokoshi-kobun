@@ -86,8 +86,8 @@
 
         const start = Number(localStorage.getItem("start")) || 1;
         const end = Number(localStorage.getItem("end")) || 200;
-        document.querySelector("#start").value=start;
-        document.querySelector("#end").value=end;
+        document.querySelector("#start").value = start;
+        document.querySelector("#end").value = end;
         data = data.filter((e) => start <= e.i && e.i <= end)
         let userdata = data.map(() => {
             return {
@@ -126,12 +126,17 @@
                 <div class="wrong">${wrong.length}</div>
                 `;
         title.addEventListener("click", () => {
-            location.pathname = "/summary" 
+            location.pathname = "/summary"
         })
 
         document.querySelector("#apply").addEventListener("click", function () {
-            let start_ = document.querySelector("#start").value;
-            let end_ = document.querySelector("#end").value;
+            let start_ = Number(document.querySelector("#start").value);
+            let end_ = Number(document.querySelector("#end").value);
+            // start_ is not a number
+            if (Number.isNaN(start_) || Number.isNaN(end_)) {
+                alert("数字を入力してください");
+                return;
+            }
             if (start_ < 1 || end_ > 528 || start_ > end_) {
                 alert("1~528の範囲で入力してください");
                 return;
